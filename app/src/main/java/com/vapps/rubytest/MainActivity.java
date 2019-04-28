@@ -64,12 +64,14 @@ public class MainActivity extends AppCompatActivity
 
     public void login(View button) {
         JSONObject loginDetails=new JSONObject();
+        JSONObject holder = new JSONObject();
         try {
             if(!(mUserEmail.getText().toString().equals("")||mUserPassword.getText().toString().equals(""))) {
                 loginDetails.put("email", mUserEmail.getText().toString());
                 loginDetails.put("password", mUserPassword.getText().toString());
                 AddressDetailsLoader task=new AddressDetailsLoader();
-                task.execute("http://www.amxdp.club/companies.json/",loginDetails.toString());
+               holder.put("user",loginDetails);
+                task.execute("http://www.amxdp.fun/api/sessions",holder.toString());
             //    progressBar.setVisibility(View.VISIBLE);
             }
             else
